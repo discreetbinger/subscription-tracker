@@ -22,7 +22,7 @@ Auth.currentAuthenticatedUser({
 const Settings = () => {
     return (
       
-            
+            <View style = {styles.viewman}>
             <View style = {styles.brrr}>
             <Text style = {styles.title}>
                 User: {userName}
@@ -31,7 +31,7 @@ const Settings = () => {
                 <Icon name = 'logout' style = {styles.logout} onPress = {() => logout()}/>
               
             </View>
-        
+            </View>
     );
 }
 
@@ -42,21 +42,24 @@ const styles = StyleSheet.create ({
         alignSelf: 'center',
         textAlign: 'center',
         
-        top: 30
+        top: 30,
+        color: 'white'
+    
+
     },
     title: {
-        fontSize: 20
+        fontSize: 20,color: 'white'
     },
     logout: {
         fontSize: 30,
      //   position: 'absolute',
         flex: 1,
         top: 100,
-        textAlign: 'center',
+        textAlign: 'center',color: 'white'
     },
     viewman: {
       //  justifyContent: 'center',
-       
+      backgroundColor: '#121212',
        // alignSelf: 'flex-end'
     }
 });

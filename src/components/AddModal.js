@@ -26,7 +26,10 @@ const AddModal = ({addModal}) => {
 
     const onChangeName = (text) => {
         let matches = getMatches(text, services);
-        setSuggestions(matches)
+        let pl = matches.map(a => a.name)
+        console.log(pl)
+        setSuggestions(pl)
+        
         setName(text);
     }
 

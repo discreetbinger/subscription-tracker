@@ -195,7 +195,7 @@ const HomeScreen = () => {
         </View>
       </Modal>
 
-      <FlatList
+      <FlatList style = {styles.gr}
         data={items}
         renderItem={({ item }) =>
           <ListItem item={item}
@@ -208,6 +208,10 @@ const HomeScreen = () => {
 }
 
 const styles = StyleSheet.create({
+  gr: {
+    marginVertical: 10
+    //bottom: 'auto'
+  },
   container: {
     flex: 1,
     backgroundColor: '#121212',
@@ -216,6 +220,7 @@ const styles = StyleSheet.create({
   modal: {
     flex: 0,
     backgroundColor: '#202020',
+    //backgroundColor: '#121212',
     margin: 0,
     height: Dimensions.get('window').height - 75 - 60,
     top: 60

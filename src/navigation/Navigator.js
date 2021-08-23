@@ -6,6 +6,7 @@ import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import Settings from '../screens/Settings';
 import HomeScreen from '../screens/HomeScreen';
+import { color } from 'react-native-reanimated';
 
 const Tab = createBottomTabNavigator();
 
@@ -16,13 +17,24 @@ const Navigator = () => {
             screenOptions = {{
                 keyboardHidesTabBar: true,
                 tabBarShowLabel: false,
+                tabBarStyle : {
+                   // color: 'white',
+                    backgroundColor: 'white'
+                    
+                },
+                
+                headerStyle: {
+                 //   backgroundColor: 'black'
+                },
                 //headerShown: false,
                
                 headerTitleStyle: {
                     fontSize: 26,
+                  //  color: 'white'
                    
                 },
-                headerTitleAlign: 'center'
+                headerTitleAlign: 'center',
+               
               
             }}
             

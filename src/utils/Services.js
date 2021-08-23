@@ -5,10 +5,11 @@ export const getMatches = (text, services) => {
     if (text) {
         matches = services.filter(bruv => {
             const regex = new RegExp(`${text}`, "gi"); // gi makes it case insensitive
-            return bruv.match(regex);
+            return bruv.name.match(regex);
+         //  bruv.name
         });
     }
-    console.log(matches)
+   // console.log(matches)
 
     return (
         matches
