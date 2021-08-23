@@ -7,6 +7,8 @@ export const getItem = /* GraphQL */ `
       id
       name
       date
+      price
+      currency
       createdAt
       updatedAt
       owner
@@ -24,6 +26,8 @@ export const listItems = /* GraphQL */ `
         id
         name
         date
+        price
+        currency
         createdAt
         updatedAt
         owner

@@ -10,6 +10,8 @@ export const createItem = /* GraphQL */ `
       id
       name
       date
+      price
+      currency
       createdAt
       updatedAt
       owner
@@ -25,6 +27,8 @@ export const updateItem = /* GraphQL */ `
       id
       name
       date
+      price
+      currency
       createdAt
       updatedAt
       owner
@@ -40,6 +44,8 @@ export const deleteItem = /* GraphQL */ `
       id
       name
       date
+      price
+      currency
       createdAt
       updatedAt
       owner

@@ -1,30 +1,25 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 
 const AddButton = ({addButton}) => {
     return (
-        <View>
-            <TouchableOpacity style = {styles.btn} onPress = {() => addButton()}>
-                <Text style = {styles.btnText}>
-                    <Icon name = 'plus' size = {20} />
-                    {''} add subscription
-                </Text>
-            </TouchableOpacity>
-        </View>
+                    <Icon style = {styles.btn} name = 'plus-circle' size = {100} onPress = {() => addButton()}/>  
     );
 }
 
 const styles = StyleSheet.create ({
     btn: {
-        backgroundColor: '#c2bad8',
-        padding: 9,
-        margin: 5
-    },
-    btnText: {
-        color: 'darkslateblue',
-        fontSize: 20,
-        textAlign: 'center',
+        //backgroundColor: '#c2bad8',
+        //width: 60,
+       // alignItems: 'center',
+        position: 'absolute',
+        //marginBottom: 20,
+        alignSelf: 'flex-end',
+        bottom: 40,
+        right: 10,
+        color: 'darkslateblue'
+       // backgroundColor: 'transparent'
     }
 });
 

@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { View, Text } from 'react-native';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import Settings from '../screens/Settings';
 import HomeScreen from '../screens/HomeScreen';
 
@@ -14,36 +14,34 @@ const Navigator = () => {
     <NavigationContainer>
         <Tab.Navigator
             screenOptions = {{
+                keyboardHidesTabBar: true,
                 tabBarShowLabel: false,
-                style: {
-                    position: 'absolute',
-                    bottom: 25,
-                    left: 20,
-                    right: 20,
-                    elevation: 0,
-                    backgroundColor: '#ffffff',
-                    borderRadius: 15,
-                    height: 90
-                }
+                //headerShown: false,
+               
+                headerTitleStyle: {
+                    fontSize: 26,
+                   
+                },
+                headerTitleAlign: 'center'
+              
             }}
+            
         >
-            <Tab.Screen name = "Home" component = {HomeScreen}
+            <Tab.Screen name = "manage subscriptions" component = {HomeScreen}
             options = {{
-                headerShown: false,
                 tabBarIcon: ({focused}) => (
                     <View>
-                        <Text>home</Text>
+                        <Icon name = 'home' size = {30}></Icon>
                     </View>
                 )
             }}
             />
 
-            <Tab.Screen name = "Settings" component = {Settings} 
+            <Tab.Screen name = "settings" component = {Settings} 
             options = {{
-                headerShown: false,
                 tabBarIcon: ({focused}) => (
                     <View>
-                        <Text>settings</Text>
+                        <Icon name = 'settings' size = {30}></Icon>
                     </View>
                 )
             }}

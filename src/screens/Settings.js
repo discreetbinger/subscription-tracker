@@ -1,11 +1,15 @@
 import React from 'react';
-import { View, Text, Pressable } from 'react-native';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { View, Text, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Auth } from 'aws-amplify';
-import Header from '../components/Header';
 
 const logout = () => {
     Auth.signOut();
+}
+
+const ret = () => {
+
+    
 }
 
 let userName;
@@ -17,18 +21,44 @@ Auth.currentAuthenticatedUser({
 
 const Settings = () => {
     return (
-        <View>
-            <Header title = 'settings'/>
-            <Text>
-                Hello {userName}
+      
+            
+            <View style = {styles.brrr}>
+            <Text style = {styles.title}>
+                User: {userName}
             </Text>
-            <Pressable onPress = {logout}>
-                <Text>
-                    logout
-                </Text>
-            </Pressable>
-        </View>
+           
+                <Icon name = 'logout' style = {styles.logout} onPress = {() => logout()}/>
+              
+            </View>
+        
     );
 }
+
+const styles = StyleSheet.create ({
+    brrr: {
+        justifyContent: 'center',
+        alignContent: 'center',
+        alignSelf: 'center',
+        textAlign: 'center',
+        
+        top: 30
+    },
+    title: {
+        fontSize: 20
+    },
+    logout: {
+        fontSize: 30,
+     //   position: 'absolute',
+        flex: 1,
+        top: 100,
+        textAlign: 'center',
+    },
+    viewman: {
+      //  justifyContent: 'center',
+       
+       // alignSelf: 'flex-end'
+    }
+});
 
 export default Settings;
