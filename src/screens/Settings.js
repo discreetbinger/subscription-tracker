@@ -1,66 +1,51 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Auth } from 'aws-amplify';
+import Icon from 'react-native-vector-icons/dist/SimpleLineIcons';
 
 const logout = () => {
     Auth.signOut();
 }
 
-const ret = () => {
-
-    
-}
-
+// store the username of current user.
 let userName;
-// may be a beter way to get username. use getItem with graphql?
 Auth.currentAuthenticatedUser({
-    bypassCache: true  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data.
+    bypassCache: true  // this call will send a request to Cognito to get the latest user data.
 }).then(user => userName = user.username)
-.catch(err => console.log(err));
+    .catch(err => console.log(err));
 
+// settings page
 const Settings = () => {
     return (
-      
-            <View style = {styles.viewman}>
-            <View style = {styles.brrr}>
-            <Text style = {styles.title}>
-                User: {userName}
-            </Text>
-           
-                <Icon name = 'logout' style = {styles.logout} onPress = {() => logout()}/>
-              
+        <View style={styles.settingsPage}>
+            <View style={styles.container}>
+                <Text style={styles.title}>
+                    User: {userName}
+                </Text>
+                <Icon name='logout' style={styles.logoutIcon} onPress={() => logout()} />
             </View>
-            </View>
+        </View>
     );
 }
 
-const styles = StyleSheet.create ({
-    brrr: {
-        justifyContent: 'center',
-        alignContent: 'center',
-        alignSelf: 'center',
-        textAlign: 'center',
-        
+const styles = StyleSheet.create({
+    settingsPage: {
+        backgroundColor: '#121212',
+    },
+    container: {
         top: 30,
-        color: 'white'
-    
-
+        alignSelf: 'center'
     },
     title: {
-        fontSize: 20,color: 'white'
+        fontSize: 20,
+        color: 'white'
     },
-    logout: {
-        fontSize: 30,
-     //   position: 'absolute',
-        flex: 1,
+    logoutIcon: {
         top: 100,
-        textAlign: 'center',color: 'white'
-    },
-    viewman: {
-      //  justifyContent: 'center',
-      backgroundColor: '#121212',
-       // alignSelf: 'flex-end'
+        flex: 1,
+        fontSize: 30,
+        textAlign: 'center',
+        color: 'white'
     }
 });
 

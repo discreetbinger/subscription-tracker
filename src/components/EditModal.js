@@ -6,15 +6,15 @@ import { Services, Currencies } from '../utilities/Data';
 import { getMatches } from '../utilities/Services';
 import { formatDate } from '../utilities/Date';
 
-// modal for adding a subscription.
-const AddModal = ({ addModal }) => {
+// modal for editing or deleting a subscription.
+const EditModal = ({ changeModal, deleteModal, item }) => {
 
-    const [name, setName] = useState();
+    const [name, setName] = useState(item.name);
     const [services, setServices] = useState(Services());
     const [suggestions, setSuggestions] = useState([]);
-    const [date, setDate] = useState();
-    const [price, setPrice] = useState();
-    const [currency, setCurrency] = useState();
+    const [date, setDate] = useState(item.date);
+    const [price, setPrice] = useState(String(item.price));
+    const [currency, setCurrency] = useState(item.currency);
     const [currencies, setCurrencies] = useState(Currencies());
     const [dropdownMenu, setDropdownMenu] = useState();
 
@@ -45,7 +45,8 @@ const AddModal = ({ addModal }) => {
 
     return (
         <View style={styles.container}>
-            <Icon name='close-circle-outline' style={styles.closeBtn} onPress={() => addModal(false)} />
+            {/*this closes modal*/}
+            <Icon name='close-circle-outline' style={styles.closeBtn} onPress={() => changeModal(false)} />
             <TextInput style={styles.input} value={name} placeholder='Name' placeholderTextColor='black' onChangeText={onChangeName} />
             <View style={styles.suggestions}>
                 <ScrollView keyboardShouldPersistTaps='always'>
@@ -58,11 +59,17 @@ const AddModal = ({ addModal }) => {
             </View>
             <TextInput keyboardType="number-pad" style={styles.input} value={date} placeholder='Renewal date (DD/MM)' placeholderTextColor='black' onChangeText={onChangeDate} />
             <View style={styles.priceCurr}>
-                <TextInput keyboardType="number-pad" style={[styles.input, styles.price]} placeholder='Price' placeholderTextColor='black' onChangeText={onChangePrice} />
+                <TextInput keyboardType="number-pad" value={price} style={[styles.input, styles.price]} placeholder='Price' placeholderTextColor='black' onChangeText={onChangePrice} />
                 <DropDownPicker dropDownContainerStyle={styles.dropdownMenu} style={[styles.input, styles.curr]} placeholder="Curr" onPress={() => Keyboard.dismiss()}
                     open={dropdownMenu} value={currency} items={currencies} setOpen={setDropdownMenu} setValue={onChangeCurrency} setItems={setCurrencies} />
-                <TouchableOpacity style={styles.btn} onPress={() => addModal(name, date, price, currency, true)}>
-                    <Icon name='plus-circle-outline' style={styles.addBtn} />
+            </View>
+            <View style={styles.btnContainer}>
+                <TouchableOpacity style={styles.btn} onPress={() => changeModal(name, date, price, currency, true)}>
+                    <Icon name='check-circle-outline' style={styles.addBtn} />
+                </TouchableOpacity>
+                {/*this deletes item*/}
+                <TouchableOpacity style={styles.btn} onPress={() => deleteModal()}>
+                    <Icon name='delete-circle-outline' style={styles.removeBtn} />
                 </TouchableOpacity>
             </View>
         </View>
@@ -115,17 +122,25 @@ const styles = StyleSheet.create({
         width: 100,
         padding: 9
     },
+    btnContainer: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        padding: 9
+    },
     btn: {
-        alignSelf: 'center',
         margin: 5,
-        marginLeft: 'auto',
+        marginHorizontal: 15,
         borderRadius: 5,
         color: 'transparent'
     },
     addBtn: {
         fontSize: 57,
         color: 'green'
+    },
+    removeBtn: {
+        fontSize: 57,
+        color: 'red'
     }
 });
 
-export default AddModal;
+export default EditModal;

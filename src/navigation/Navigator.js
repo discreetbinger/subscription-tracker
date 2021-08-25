@@ -1,66 +1,60 @@
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import React from 'react';
-import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
-import Settings from '../screens/Settings';
 import HomeScreen from '../screens/HomeScreen';
-import { color } from 'react-native-reanimated';
+import Settings from '../screens/Settings';
 
 const Tab = createBottomTabNavigator();
 
+// the navigation function for the bottom tab.
 const Navigator = () => {
     return (
-    <NavigationContainer>
-        <Tab.Navigator
-            screenOptions = {{
-                keyboardHidesTabBar: true,
-                tabBarShowLabel: false,
-                tabBarStyle : {
-                   // color: 'white',
-                    backgroundColor: 'white'
-                    
-                },
-                
-                headerStyle: {
-                 //   backgroundColor: 'black'
-                },
-                //headerShown: false,
-               
-                headerTitleStyle: {
-                    fontSize: 26,
-                  //  color: 'white'
-                   
-                },
-                headerTitleAlign: 'center',
-               
-              
-            }}
-            
-        >
-            <Tab.Screen name = "manage subscriptions" component = {HomeScreen}
-            options = {{
-                tabBarIcon: ({focused}) => (
-                    <View>
-                        <Icon name = 'home' size = {30}></Icon>
-                    </View>
-                )
-            }}
-            />
-
-            <Tab.Screen name = "settings" component = {Settings} 
-            options = {{
-                tabBarIcon: ({focused}) => (
-                    <View>
-                        <Icon name = 'settings' size = {30}></Icon>
-                    </View>
-                )
-            }}
-            />
-        </Tab.Navigator>
-    </NavigationContainer>
+        <NavigationContainer>
+            <Tab.Navigator
+                screenOptions={{
+                    tabBarShowLabel: false,
+                    keyboardHidesTabBar: true,
+                    headerTitleAlign: 'center',
+                    headerTitleStyle: {
+                        fontSize: 26,
+                    }
+                }}
+            >
+                <Tab.Screen name="Subscriptions" component={HomeScreen}
+                    options={{
+                        tabBarIcon: ({ focused }) => (
+                            <View>
+                                <Icon name='home' style={focused ? styles.focusedIcon : styles.unfocusedIcon} />
+                            </View>
+                        )
+                    }}
+                />
+                <Tab.Screen name="Settings" component={Settings}
+                    options={{
+                        tabBarIcon: ({ focused }) => (
+                            <View>
+                                <Icon name='settings' style={focused ? styles.focusedIcon : styles.unfocusedIcon} />
+                            </View>
+                        )
+                    }}
+                />
+            </Tab.Navigator>
+        </NavigationContainer>
     );
 }
+
+const styles = StyleSheet.create({
+    focusedIcon: {
+        fontSize: 30,
+        color: '#202020'
+    },
+    unfocusedIcon: {
+        fontSize: 30,
+        color: 'black'
+    }
+});
 
 export default Navigator;
